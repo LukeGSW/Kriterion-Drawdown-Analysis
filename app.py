@@ -198,7 +198,7 @@ st.markdown(
 )
 
 fig_equity = build_equity_with_dd_zones(prices, events_df, ticker_input)
-st.plotly_chart(fig_equity, use_container_width=True)
+st.plotly_chart(fig_equity, width="stretch")
 
 with st.expander("ℹ️ Nota metodologica — Equity Curve"):
     st.markdown(
@@ -241,17 +241,13 @@ with col_tab:
             "Freq. media / 1Y": "{:.3f}",
             "Freq. media / 2Y": "{:.3f}",
             "Freq. media / 3Y": "{:.3f}",
-        })
-        .background_gradient(
-            subset=["Freq. media / 1Y", "Freq. media / 2Y", "Freq. media / 3Y"],
-            cmap="Blues",
-        ),
-        use_container_width=True,
+        }),
+        width="stretch",
     )
 
 with col_bar:
     fig_freq = build_frequency_bar(freq_df)
-    st.plotly_chart(fig_freq, use_container_width=True)
+    st.plotly_chart(fig_freq, width="stretch")
 
 with st.expander("ℹ️ Nota metodologica — Frequenza"):
     st.markdown(
@@ -285,7 +281,7 @@ st.markdown(
 )
 
 fig_dot = build_dot_plot(dot_df)
-st.plotly_chart(fig_dot, use_container_width=True)
+st.plotly_chart(fig_dot, width="stretch")
 
 # Tabella dettaglio anni per categoria
 if not dot_df.empty:
@@ -298,7 +294,7 @@ if not dot_df.empty:
             detail = subset[["year", "annual_return_pct"]].copy()
             detail.columns = ["Anno", "Rendimento Annuale (%)"]
             detail["Rendimento Annuale (%)"] = detail["Rendimento Annuale (%)"].map("{:+.2f}%".format)
-            st.dataframe(detail.set_index("Anno"), use_container_width=True)
+            st.dataframe(detail.set_index("Anno"), width="stretch")
             st.markdown("---")
 
 st.divider()
@@ -322,7 +318,7 @@ st.markdown(
 )
 
 fig_annual = build_annual_return_bar(annual_returns, annual_dd_map)
-st.plotly_chart(fig_annual, use_container_width=True)
+st.plotly_chart(fig_annual, width="stretch")
 
 st.divider()
 
@@ -346,11 +342,11 @@ st.markdown(
 )
 
 fig_heatmap = build_cooccurrence_heatmap(cooc_df)
-st.plotly_chart(fig_heatmap, use_container_width=True)
+st.plotly_chart(fig_heatmap, width="stretch")
 
 # Tabella numerica leggibile affiancata
 with st.expander("📋 Matrice numerica co-occorrenza"):
-    st.dataframe(cooc_df, use_container_width=True)
+    st.dataframe(cooc_df, width="stretch")
 
 st.divider()
 
